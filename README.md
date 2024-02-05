@@ -1,4 +1,4 @@
-CPSC6175_Spring
+**CPSC6175_Spring**
 NASA Astronomy Picture of the Day (APOD) API Endpoint
 
 Overview:

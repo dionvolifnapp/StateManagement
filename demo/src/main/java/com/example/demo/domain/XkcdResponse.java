@@ -14,6 +14,7 @@ public class XkcdResponse {
     //Getter and Setter methods
     //public String getMonth(){ return month: } <-- Getter. In our code controller (service impl) to access -> resp.getMonth()
     //public void setMonth(String mon){ month = mon) <-- Setter.  In code -> resp.setMonth("June")
+
     private String month;
 
     private int num;

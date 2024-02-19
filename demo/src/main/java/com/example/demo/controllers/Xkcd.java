@@ -1,30 +1,30 @@
 package com.example.demo.controllers;
 
 import com.example.demo.domain.XkcdResponse;
+import com.example.demo.service.impl.xkcd.XkcdServiceimpl;
+import com.example.demo.service.xkcd.XkcdService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/xkcd")
 public class Xkcd {
-
+    @Autowired
+    private XkcdService xkdcService;
     @GetMapping("/current")
     public XkcdResponse getComic(){
-        RestTemplate restTemplate = new RestTemplate();
-        XkcdResponse resp = restTemplate.getForObject("https://xkcd.com/info.0.json", XkcdResponse.class);
-        return resp;
+        return xkdcService.getCurrentComic();
     }
 
     @GetMapping("/past/{comicNum}")
     public XkcdResponse getComic(@PathVariable String comicNum){
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("https://xkcd.com/" + comicNum +"/info.0.json", XkcdResponse.class);
+        return xkdcService.getPastComic(comicNum);
     }
 
     @GetMapping("/pastOpt")
     public XkcdResponse getComicOptional(@RequestParam("comicNum") String comicNum){
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("https://xkcd.com/" + comicNum +"/info.0.json", XkcdResponse.class);
+        return xkdcService.getPastComic(comicNum);
     }
 
 

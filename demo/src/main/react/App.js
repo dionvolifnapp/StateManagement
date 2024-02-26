@@ -6,14 +6,14 @@ export class App extends Component {
     constructor(props){
         super(props)
         this.state = {
-            object:"Ball"
-            count:0
+            object:"Ball",
+            count:0 //less than five or make another API call
         }
     }
 
     render() {
-        const {object} = this.state
-        cont increment =() = {
+        const {object, count} = this.state
+        const increment =() => {
             this.setState({count: this.state.count + 1})
         }
         return (

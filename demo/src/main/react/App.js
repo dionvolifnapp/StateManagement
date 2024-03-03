@@ -1,31 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import AppContainer from "/containers/AppContainer"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-export class App extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            object:"Ball",
-            count:0 //less than five or make another API call
-        }
-    }
+import NasaApodPage from "./containers/NasaApodPage";
 
-    render() {
-        const {object, count} = this.state
-        const increment =() => {
-            this.setState({count: this.state.count + 1})
-        }
-        return (
-            <AppContainer
-                name="Jose"
-                color="Green"
-                object={object}
-                count={count}
-                increment={increment}
-            />
-        )
-    }
-}
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<NasaApodPage />} />
+      </Routes>
+    </Router>
+  );
+};
 
-ReactDOM.render(<App />, document.querySelector("#app"));
+ReactDOM.render(<App />, document.getElementById("app"));
+
+
+
+
+
+
+
+
+
+

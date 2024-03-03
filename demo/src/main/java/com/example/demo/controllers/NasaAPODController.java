@@ -21,10 +21,9 @@ public class NasaAPODController {
             @RequestParam(required = false) Integer count,
             @RequestParam(required = false) Boolean thumbs
     ) {
-        // Create a RestTemplate instance
+
         RestTemplate restTemplate = new RestTemplate();
 
-        // Build the URL with query parameters
         StringBuilder apiUrl = new StringBuilder(NASA_APOD_BASE_URL);
         apiUrl.append("?api_key=").append(API_KEY);
 
@@ -44,8 +43,10 @@ public class NasaAPODController {
             apiUrl.append("&thumbs=").append(thumbs);
         }
 
-        // Make an HTTP GET request to the NASA APOD API
         String response = restTemplate.getForObject(apiUrl.toString(), String.class);
+
+        // Log the response
+        System.out.println("NASA APOD API Response: " + response);
 
         return response;
     }

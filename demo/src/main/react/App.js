@@ -1,20 +1,47 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import ReactDom from "react-dom/client";
+import AppContainer from "./containers/AppContainer";
+import XkcdCurrentContainer from "./containers/xkcd/XkcdCurrentContainer";
+import XkcdPastContainer from "./containers/xkcd/XkcdPastContainer";
+import XkcdArrayRespEx from "./containers/xkcd/XkcdArrayRespEx";
 import NasaApodPage from "./containers/NasaApodPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<NasaApodPage />} />
-      </Routes>
-    </Router>
-  );
-};
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <AppContainer />,
+        children: [
+            {
+                index: true,
+                element: <div> Empty Index </div>
+            },
+            {
+                path: "currentxkcdcomic",
+                element: <XkcdCurrentContainer />
+            },
+            {
+                path: "pastxkcdcomic",
+                element: <XkcdPastContainer />
+            },
+            {
+                path: "example",
+                element: <XkcdArrayRespEx />
+            },
+            {
+                path: "nasa-apod",
+                element: <NasaApodPage />
+            }
+        ]
+    }
+]);
 
-ReactDOM.render(<App />, document.getElementById("app"));
+const root = ReactDom.createRoot(document.getElementById('app'));
+root.render(
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
+);
 
 
 

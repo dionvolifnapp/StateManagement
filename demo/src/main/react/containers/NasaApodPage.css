@@ -1,0 +1,47 @@
+.nasa-apod-page {
+  padding: 20px;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.input-section label,
+.input-section input,
+.input-section button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.image-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-container {
+  border: 1px solid #ddd;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.image-wrapper {
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.image-text {
+  padding: 10px;
+}
+
+.image-text h2 {
+  margin-top: 0;
+}
+
+.image-text p {
+  margin-bottom: 5px;
+}

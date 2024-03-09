@@ -10,57 +10,68 @@ const NasaApodPage = () => {
 
   const fetchData = async () => {
     try {
-      // Clear images before fetching new data
-      setImages([]);
+      const newImages = [];
 
       const fetchAndSetImages = async (url) => {
         const response = await fetch(url);
         const data = await response.json();
-        // Check if data is an array, if not, make it an array
         const imagesArray = Array.isArray(data) ? data : [data];
-        setImages(prevImages => [...prevImages, ...imagesArray]);
+        return imagesArray.filter(image => image.url);
       };
 
       if (date) {
-        await fetchAndSetImages(`/nasa-apod/picture?date=${date}`);
+        newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?date=${date}`));
       }
-      if (fromDate) {
-        await fetchAndSetImages(`/nasa-apod/picture?start_date=${fromDate}`);
-      }
-      if (toDate) {
-        await fetchAndSetImages(`/nasa-apod/picture?end_date=${toDate}`);
+      if (fromDate && toDate) {
+        newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?start_date=${fromDate}&end_date=${toDate}`));
+      } else {
+        if (fromDate) {
+          newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?start_date=${fromDate}`));
+        }
+        if (toDate) {
+          newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?end_date=${toDate}`));
+        }
       }
       if (count) {
-        await fetchAndSetImages(`/nasa-apod/picture?count=${count}`);
+        newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?count=${count}`));
       }
+
+      setImages(newImages);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const clearDates = () => {
+    setDate('');
+    setFromDate('');
+    setToDate('');
   };
 
   return (
     <div className="nasa-apod-page">
       <h1>NASA Astronomy Picture of the Day</h1>
       <div className="input-section">
-        <label htmlFor="singleDate">Single Date : </label>
+        <label htmlFor="singleDate">Single Date:</label>
         <input type="date" id="singleDate" value={date} onChange={e => setDate(e.target.value)} />
 
-        <label htmlFor="dateFrom">Date From : </label>
+        <label htmlFor="dateFrom">Date From:</label>
         <input type="date" id="dateFrom" value={fromDate} onChange={e => setFromDate(e.target.value)} />
 
-        <label htmlFor="dateTo">Date To : </label>
+        <label htmlFor="dateTo">Date To:</label>
         <input type="date" id="dateTo" value={toDate} onChange={e => setToDate(e.target.value)} />
 
-        <label htmlFor="count">Count : </label>
+        <label htmlFor="count">Count:</label>
         <input type="number" id="count" value={count} onChange={e => setCount(e.target.value)} />
 
         <button onClick={fetchData}>Fetch Data</button>
-        <div className="total-count">Total Images: {images.length}</div> {/* Display total count of images */}
+        <button onClick={clearDates}>Clear All Dates</button> {/* Clear All Dates button */}
+        <div className="total-count">Total Images: {images.length}</div>
       </div>
 
       <div className="image-section">
         {images.map(image => (
-          <div key={image.date} className="image-container">
+          <div key={image.date || image.title} className="image-container">
             <div className="image-wrapper">
               <img src={image.url} alt={image.title} />
             </div>
@@ -77,6 +88,8 @@ const NasaApodPage = () => {
 };
 
 export default NasaApodPage;
+
+
 
 
 

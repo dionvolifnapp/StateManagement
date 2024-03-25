@@ -20,6 +20,9 @@ const Nav = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/nasa-apod" style={{ color: 'white' }}>NASA API</Link> {/* Use Link component */}
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/weather-dashboard" style={{ color: 'white' }}>Weather Dashboard</Link> {/* Use Link component */}
+                        </li>
                     </ul>
                 </div>
             </div>

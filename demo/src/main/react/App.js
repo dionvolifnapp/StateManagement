@@ -5,6 +5,7 @@ import XkcdCurrentContainer from "./containers/xkcd/XkcdCurrentContainer";
 import XkcdPastContainer from "./containers/xkcd/XkcdPastContainer";
 import XkcdArrayRespEx from "./containers/xkcd/XkcdArrayRespEx";
 import NasaApodPage from "./containers/NasaApodPage";
+import NasaApodPageCurrent from "./containers/NasaApodPageCurrent"; // Import the NasaApodPageCurrent component
 import WeatherDashboard from "./containers/WeatherDashboard"; // Import the WeatherDashboard component
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: "nasa-apod",
                 element: <NasaApodPage />
+            },
+            {
+                path: "nasa-apod2",
+                element: <NasaApodPageCurrent />
             },
             {
                 path: "weather-dashboard", // Define a new path for Weather Dashboard

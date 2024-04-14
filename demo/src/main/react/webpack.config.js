@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
     entry: './App.js',
@@ -12,7 +12,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: path.join(__dirname, '.'),
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
                 use: [{
                     loader: 'babel-loader',
@@ -38,5 +38,8 @@ module.exports = {
                 ]
             }
         ]
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
     }
 };

@@ -1,49 +1,23 @@
 import React, { useState } from 'react';
 import './NasaApodPage.css';
+import useApiStore from './apiStore';
 
 const NasaApodPage = () => {
-  const [date, setDate] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
   const [count, setCount] = useState('');
-  const [images, setImages] = useState([]);
+
+  const { images, fetchImage } = useApiStore();
 
   const fetchData = async () => {
     try {
-      const newImages = [];
-
-      const fetchAndSetImages = async (url) => {
-        const response = await fetch(url);
-        const data = await response.json();
-        const imagesArray = Array.isArray(data) ? data : [data];
-        return imagesArray.filter(image => image.url);
-      };
-
-      if (date) {
-        newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?date=${date}`));
-      }
-      if (fromDate && toDate) {
-        newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?start_date=${fromDate}&end_date=${toDate}`));
-      } else {
-        if (fromDate) {
-          newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?start_date=${fromDate}`));
-        }
-        if (toDate) {
-          newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?end_date=${toDate}`));
-        }
-      }
-      if (count) {
-        newImages.push(...await fetchAndSetImages(`/nasa-apod/picture?count=${count}`));
-      }
-
-      setImages(newImages);
+      await fetchImage({ fromDate, toDate, count });
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
   const clearDates = () => {
-    setDate('');
     setFromDate('');
     setToDate('');
     setCount('');
@@ -53,8 +27,6 @@ const NasaApodPage = () => {
     <div className="nasa-apod-page">
       <h1>NASA Astronomy Picture of the Day</h1>
       <div className="input-section">
-        <label htmlFor="singleDate">Single Date:</label>
-        <input type="date" id="singleDate" value={date} onChange={e => setDate(e.target.value)} />
 
         <label htmlFor="dateFrom">Date From:</label>
         <input type="date" id="dateFrom" value={fromDate} onChange={e => setFromDate(e.target.value)} />
@@ -89,6 +61,12 @@ const NasaApodPage = () => {
 };
 
 export default NasaApodPage;
+
+
+
+
+
+
 
 
 

@@ -18,7 +18,10 @@ const Nav = () => {
                             <Link className="nav-link" to="/pastxkcdcomic" style={{ color: 'white' }}>Past Comic</Link> {/* Use Link component */}
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/nasa-apod" style={{ color: 'white' }}>NASA API</Link> {/* Use Link component */}
+                            <Link className="nav-link" to="/nasa-apod2" style={{ color: 'white' }}>NASA API Current</Link> {/* Use Link component */}
+                        </li>
+                         <li className="nav-item">
+                            <Link className="nav-link" to="/nasa-apod" style={{ color: 'white' }}>NASA API Date Range</Link> {/* Use Link component */}
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/weather-dashboard" style={{ color: 'white' }}>Weather Dashboard</Link> {/* Use Link component */}

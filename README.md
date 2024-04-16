@@ -1,4 +1,12 @@
-In this assignment we use zustand to consolidate all API calls into apiStore.js and pass them to NasaApodPage.js and NasaApodPageCurrent.js.
+In this assignment we use zustand to consolidate all API calls into apiStore.js and pass them to NasaApodPage.js and NasaApodPageCurrent.js.  The following work has been done:
+
+1. Installed zustand
+2. Updated webpack.config.file to accomodate zustand
+2. Created two pages NasaApodPage.js and NasaApodPageCurrent.js
+3. Created store.js which handles all API calls and passed the data to both pages
+4. Call is only done once as verified by the broswer inspect/network utility
+   
+
 
 **CPSC6175_Spring**
 NASA Astronomy Picture of the Day (APOD) API Endpoint

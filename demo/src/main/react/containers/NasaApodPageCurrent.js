@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './NasaApodPage.css';
-import useApiStore from './apiStore';
+import useApiStore from './store';
 
 const NasaApodPageCurrent = () => {
   const [date, setDate] = useState('');

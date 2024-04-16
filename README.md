@@ -1,3 +1,5 @@
+In this assignment we use zustand to consolidate all API calls into apiStore.js and pass them to NasaApodPage.js and NasaApodPageCurrent.js.
+
 **CPSC6175_Spring**
 NASA Astronomy Picture of the Day (APOD) API Endpoint
 

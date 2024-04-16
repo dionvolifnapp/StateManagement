@@ -38,10 +38,6 @@ const router = createBrowserRouter([
                 path: "nasa-apod2",
                 element: <NasaApodPageCurrent />
             },
-            {
-                path: "weather-dashboard", // Define a new path for Weather Dashboard
-                element: <WeatherDashboard /> // Render the WeatherDashboard component
-            }
         ]
     }
 ]);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NasaApodPage.css';
 import useApiStore from './store';
 
@@ -8,6 +8,12 @@ const NasaApodPage = () => {
   const [count, setCount] = useState('');
 
   const { images, fetchImage } = useApiStore();
+
+  useEffect(() => {
+      return () => {
+        useApiStore.setState({ images: [] });
+      };
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -61,15 +67,3 @@ const NasaApodPage = () => {
 };
 
 export default NasaApodPage;
-
-
-
-
-
-
-
-
-
-
-
-

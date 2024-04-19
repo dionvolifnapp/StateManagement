@@ -1,4 +1,4 @@
-In this assignment we use zustand to consolidate all API calls into apiStore.js and pass them to NasaApodPage.js and NasaApodPageCurrent.js.  The following work has been done:
+In this assignment we used zustand to consolidate all API calls into store.js and pass them to NasaApodPage.js and NasaApodPageCurrent.js.  The following work has been done:
 
 1. Installed zustand
 2. Updated webpack.config.file to accomodate zustand
